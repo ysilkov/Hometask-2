@@ -5,7 +5,7 @@ return (
     <div>
        <table>
         <colgroup>
-          <col className="category-icon" />
+          <col className="categoryIcon" />
           <col className="category2" />
           <col className="active" />
           <col className="archived" />
