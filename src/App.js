@@ -1,4 +1,4 @@
-import ArchiveNotes from "./components/ArchivesNotes";
+import ArchiveNotes from "./components/ArchiveNotes/ArchivesNotes";
 import MyNotes from "./components/MyNotes/MyNotes";
 
 function App() {
