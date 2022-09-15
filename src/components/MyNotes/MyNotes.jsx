@@ -8,48 +8,62 @@ import {
   editLogo,
   unArchiveLogo,
 } from "../../helper/logo";
-import { deleteNotes, removeNote } from "../../store/noteReducer";
+import {
+  archiveChange,
+  deleteNotes,
+  editModal,
+  removeNote,
+  switcher,
+} from "../../store/noteReducer";
+import ModalWindow from "../ModalWindow/ModalWindow";
 import style from "./MyNotes.module.css";
 
 const MyNotes = () => {
-  let [activeNoteTableShown, setActiveNoteTableShown] = useState(true);
+  const [message, setMessage] = useState("Active notes");
+  const [modalActive, setModalActive] = useState(false);
   const dispatch = useDispatch();
   let data = useSelector((state) => state.note.notes);
+  let activeNoteTableShown = useSelector((state) => state.note.switch);
   let activeNote = data.filter((el) => el.archived === false);
   let archivedNote = data.filter((el) => el.archived === true);
   const notes = activeNoteTableShown ? activeNote : archivedNote;
+
   const switchTables = () => {
     activeNoteTableShown
       ? (activeNoteTableShown = false)
       : (activeNoteTableShown = true);
-    setActiveNoteTableShown(activeNoteTableShown);
+    dispatch(switcher(activeNoteTableShown));
+    setMessage(
+      activeNoteTableShown === false ? "Archived notes" : "Active notes"
+    );
   };
-  const message =
-    activeNoteTableShown === false ? "Archived notes" : "Active notes";
-  const addNoteArchive = (id)=>{
-      console.log(data)
 
-   
-      let newDate = data.find((n) => n.id === id)
-      /* Object.freeze(newDate); */
-      console.log(id)
-      if(data.find((n) => n.id === id).archived === false){
-        console.log(data)
-        console.log({...newDate}.archived = true)
-        return {...newDate}.archived = true}
-     else{
-      return {...newDate}.archived = false
-     }
-     
-  }
+  const addNoteArchive = (id) => {
+    dispatch(archiveChange(id));
+    dispatch(switcher(activeNoteTableShown));
+    setMessage(
+      activeNoteTableShown === false
+        ? "Note add to active note"
+        : "Note add to archive"
+    );
+  };
   const deleteNote = (id) => {
     dispatch(removeNote(data.filter((el) => el.id !== id)));
+    setMessage("Note delete");
   };
   const deleteAll = () => {
     activeNoteTableShown
       ? dispatch(deleteNotes(data.filter((el) => el.archived !== false)))
       : dispatch(deleteNotes(data.filter((el) => el.archived !== true)));
+    setMessage(
+      activeNoteTableShown === false
+        ? "All archive notes delete"
+        : "All active notes delete"
+    );
   };
+  const getIdModal = (id) =>{
+    dispatch(editModal(id))
+  }
   return (
     <div className={style.tableNotes}>
       <header>
@@ -114,6 +128,11 @@ const MyNotes = () => {
               <td
                 className={style.rowIconEdit}
                 dangerouslySetInnerHTML={{ __html: editLogo }}
+                onClick={(event) => {
+                  event.preventDefault();
+                  setModalActive(true);
+                  getIdModal(el.id);
+                }}
               ></td>
               <td
                 className={style.rowIconArchive}
@@ -122,7 +141,7 @@ const MyNotes = () => {
                     ? { __html: archiveLogo }
                     : { __html: unArchiveLogo }
                 }
-                onClick={()=>addNoteArchive(el.id)}
+                onClick={() => addNoteArchive(el.id)}
               ></td>
               <td
                 className={style.rowIconDelete}
@@ -133,7 +152,11 @@ const MyNotes = () => {
           ))}
         </tbody>
       </table>
-
+      <ModalWindow
+        active={modalActive}
+        setActive={setModalActive}
+        setMessage={setMessage}
+      />
       <div id={style.notes}>
         <div id="message">{message}</div>
         <button id="create-button">Create Note</button>
