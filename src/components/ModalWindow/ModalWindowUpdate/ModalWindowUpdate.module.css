@@ -1,0 +1,48 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  background-color: var(--overlay-color);
+}
+.hidden {
+  display: none;
+}
+.cancel {
+  cursor: pointer;
+}
+.submitButton {
+  cursor: pointer;
+  width: 100%;
+  max-width: 100%;
+  padding: 10px;
+}
+input,
+select,
+textarea {
+  width: 100%;
+  max-width: 100%;
+  padding: 10px;
+}
+textarea {
+  min-width: 100%;
+  min-height: 4em;
+  max-height: 12em;
+}
+form {
+  width: 20em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--text-color);
+  border-radius: 0.5em;
+  padding: 1em;
+}
+form * {
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}

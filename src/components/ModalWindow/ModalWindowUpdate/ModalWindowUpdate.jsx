@@ -1,21 +1,19 @@
 import React from "react";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changeCategory,
   changeContect,
   changeName,
   updateNoteState,
-} from "../../store/noteReducer";
-import style from "./ModalWindow.module.css";
+} from "../../../store/noteReducer";
+import style from "./ModalWindowUpdate.module.css";
 
-const ModalWindow = (props) => {
+const ModalWindowUpdate = (props) => {
   const dispatch = useDispatch();
-  let name = useSelector((state) => state.note.name);
-  let categories = useSelector((state) => state.note.categories);
-  let content = useSelector((state) => state.note.content);
-  let category = useSelector((state) => state.note.category);
-
+  const name = useSelector((state) => state.note.name);
+  const categories = useSelector((state) => state.note.categories);
+  const content = useSelector((state) => state.note.content);
+  const category = useSelector((state) => state.note.category);
   const changeNameNote = (e) => {
     dispatch(changeName(e.target.value));
   };
@@ -26,26 +24,27 @@ const ModalWindow = (props) => {
   const changeCategoryNote = (e) => {
     dispatch(changeCategory(e.target.value));
   };
+
   const updateNote = () => {
     dispatch(updateNoteState());
-    props.setActive(false);
+    props.setModalActiveEdit(false);
     props.setMessage("Note update");
   };
   return (
     <>
-      <div className={props.active ? style.modal : style.hidden}>
+      <div className={props.modalActiveEdit ? style.modal : style.hidden}>
         <form>
           <input
             type="text"
             name="name"
-            value={name || " "}
+            value={name || ""}
             placeholder="Name"
             onChange={(e) => changeNameNote(e)}
             required
           />
           <select
             name="categories"
-            value={category || ""}
+            value={category || " "}
             onChange={(e) => changeCategoryNote(e)}
           >
             {Object.keys(categories).map((elem) => (
@@ -56,7 +55,7 @@ const ModalWindow = (props) => {
             name="content"
             placeholder="Content"
             id="content"
-            value={content || ""}
+            value={content || " "}
             onChange={(e) => changeContentNote(e)}
           />
           <button
@@ -71,11 +70,11 @@ const ModalWindow = (props) => {
             className={style.cancel}
             type="button"
             value="Cancel"
-            onClick={() => props.setActive(false)}
+            onClick={() => props.setModalActiveEdit(false)}
           />
         </form>
       </div>
     </>
   );
 };
-export default ModalWindow;
+export default ModalWindowUpdate;

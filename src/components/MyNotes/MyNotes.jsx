@@ -15,12 +15,15 @@ import {
   removeNote,
   switcher,
 } from "../../store/noteReducer";
-import ModalWindow from "../ModalWindow/ModalWindow";
+import ArchiveNotes from "../ArchiveNotes/ArchiveNotes";
+import ModaleWindowCreate from "../ModalWindow/ModalWindowCreate/ModalWindowCreate";
+import ModalWindowUpdate from "../ModalWindow/ModalWindowUpdate/ModalWindowUpdate";
 import style from "./MyNotes.module.css";
 
 const MyNotes = () => {
   const [message, setMessage] = useState("Active notes");
-  const [modalActive, setModalActive] = useState(false);
+  const [modalActiveEdit, setModalActiveEdit] = useState(false);
+  const [modalActiveCreate, setModalActiveCreate] = useState(false);
   const dispatch = useDispatch();
   let data = useSelector((state) => state.note.notes);
   let activeNoteTableShown = useSelector((state) => state.note.switch);
@@ -130,7 +133,7 @@ const MyNotes = () => {
                 dangerouslySetInnerHTML={{ __html: editLogo }}
                 onClick={(event) => {
                   event.preventDefault();
-                  setModalActive(true);
+                  setModalActiveEdit(true);
                   getIdModal(el.id);
                 }}
               ></td>
@@ -152,15 +155,21 @@ const MyNotes = () => {
           ))}
         </tbody>
       </table>
-      <ModalWindow
-        active={modalActive}
-        setActive={setModalActive}
+      <ModalWindowUpdate
+        modalActiveEdit={modalActiveEdit}
+        setModalActiveEdit={setModalActiveEdit}
+        setMessage={setMessage}
+      />
+      <ModaleWindowCreate
+        modalActiveCreate={modalActiveCreate}
+        setModalActiveCreate={setModalActiveCreate}
         setMessage={setMessage}
       />
       <div id={style.notes}>
         <div id="message">{message}</div>
-        <button id="create-button">Create Note</button>
+        <button id="create-button" onClick={()=>setModalActiveCreate(true)}>Create Note</button>
       </div>
+      <ArchiveNotes />
     </div>
   );
 };
