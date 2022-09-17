@@ -25,7 +25,7 @@ const MyNotes = () => {
   const [modalActiveEdit, setModalActiveEdit] = useState(false);
   const [modalActiveCreate, setModalActiveCreate] = useState(false);
   const dispatch = useDispatch();
-  let data = useSelector((state) => state.note.notes);
+  const data = useSelector((state) => state.note.notes);
   let activeNoteTableShown = useSelector((state) => state.note.switch);
   let activeNote = data.filter((el) => el.archived === false);
   let archivedNote = data.filter((el) => el.archived === true);

@@ -1,4 +1,4 @@
-export let notes = [
+export const notes = [
     {
       id: "1",
       name: "Shopping list",

@@ -65,7 +65,7 @@ const ArchiveNotes = () => {
       </thead>
       <tbody id="archieve-table"></tbody>
       {archieveData.map((note) => (
-        <thead key={note.id}>
+        <thead key={note.category}>
           <tr>
             <td className={`${style.categoryIcon} ${style.statsIcon}`}>
               <div
