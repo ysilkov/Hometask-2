@@ -25,7 +25,7 @@ const MyNotes = () => {
   const [modalActiveEdit, setModalActiveEdit] = useState(false);
   const [modalActiveCreate, setModalActiveCreate] = useState(false);
   const dispatch = useDispatch();
-  let data = useSelector((state) => state.note.notes);
+  const data = useSelector((state) => state.note.notes);
   let activeNoteTableShown = useSelector((state) => state.note.switch);
   let activeNote = data.filter((el) => el.archived === false);
   let archivedNote = data.filter((el) => el.archived === true);
@@ -74,15 +74,15 @@ const MyNotes = () => {
       </header>
       <table>
         <colgroup>
-          <col className="note-logo" />
-          <col className="name" />
-          <col className="created" />
-          <col className="category1" />
-          <col className="content" />
-          <col className="dates" />
-          <col className="active-logo" />
-          <col className="active-logo" />
-          <col className="active-logo" />
+          <col className={style.noteLogo} />
+          <col className={style.name} />
+          <col className={style.created} />
+          <col className={style.category1} />
+          <col className={style.content} />
+          <col className={style.dates}/>
+          <col className={style.activeLogo} />
+          <col className={style.activeLogo} />
+          <col className={style.activeLogo} />
         </colgroup>
         <thead>
           <tr>
@@ -92,7 +92,7 @@ const MyNotes = () => {
             <th>Category</th>
             <th>Content</th>
             <th>Dates</th>
-            <th className={style.rowLogo}>&nbsp;</th>
+            
             <th className={style.rowLogo}>&nbsp;</th>
             <th
               className={style.rowLogoArchive}
@@ -113,7 +113,6 @@ const MyNotes = () => {
             ></th>
           </tr>
         </thead>
-
         <tbody id="notes-table">
           {notes.map((el) => (
             <tr key={el.id} id={el.id}>
@@ -127,7 +126,7 @@ const MyNotes = () => {
               <td className={style.category1}>{el.category}</td>
               <td className={style.content}>{el.content}</td>
               <td className={style.dates}>{el.dates}</td>
-              <td className={style.dates}></td>
+              
               <td
                 className={style.rowIconEdit}
                 dangerouslySetInnerHTML={{ __html: editLogo }}

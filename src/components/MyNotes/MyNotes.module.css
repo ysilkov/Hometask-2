@@ -32,23 +32,22 @@
   table {
     border-spacing: 0 0.5em;
     width: 100%;
+    table-layout: fixed;
   }
   tr th {
     color: var(--text-color);
     background-color: var(--title-table-color);
   }
   tr th {
-
     fill: white;
     text-align: left;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     height: 2em;
-   
   }
+ 
   tr td {
-  
     text-align: left;
     overflow: hidden;
     white-space: nowrap;
@@ -63,11 +62,17 @@
     border-top-left-radius: 0.5em;
     border-bottom-left-radius: 0.5em;
   }
+   tr td:first-child{
+    margin-left: 50px;
+  } 
   tr td:last-child,
   tr th:last-child {
     border-top-right-radius: 0.5em;
     border-bottom-right-radius: 0.5em;
   }
+   span{
+    margin-left: 25px;
+  } 
   .rowLogoArchive, .rowLogoDelete{
     cursor: pointer;
   }
@@ -96,14 +101,9 @@
   .category1 {
     width: 8em;
   }
-  .noteLogo,
   .activeLogo {
     width: 4em;
-  }
-  .active,
-  .archived {
-    width: 20%;
-  }
+  } 
   svg {
     max-height: 2em;
     max-width: 5em;
