@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { ModalWindowCreateProps, newNote } from "../../../helper/helper";
 import { addNote } from "../../../store/noteReducer";
+import { RootState } from "../../../store/store";
 import style from "./ModalWindowCreate.module.css";
 
-const ModaleWindowCreate = (props) => {
+const ModaleWindowCreate = (props: ModalWindowCreateProps) => {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("Idea");
   const [content, setContent] = useState("");
-  const categories = useSelector((state) => state.note.categories);
+  const categories = useSelector((state: RootState) => state.note.categories);
   const dispatch = useDispatch();
-  const newNote = {
+  const newNote: newNote = {
     name: name,
     category: category,
     content: content,

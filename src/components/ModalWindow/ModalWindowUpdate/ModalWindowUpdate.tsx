@@ -1,27 +1,29 @@
-import React from "react";
+import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { ModalWindowUpdateProps } from "../../../helper/helper";
 import {
   changeCategory,
   changeContect,
   changeName,
   updateNoteState,
 } from "../../../store/noteReducer";
+import { RootState } from "../../../store/store";
 import style from "./ModalWindowUpdate.module.css";
 
-const ModalWindowUpdate = (props) => {
+const ModalWindowUpdate = (props: ModalWindowUpdateProps) => {
   const dispatch = useDispatch();
-  const name = useSelector((state) => state.note.name);
-  const categories = useSelector((state) => state.note.categories);
-  const content = useSelector((state) => state.note.content);
-  const category = useSelector((state) => state.note.category);
-  const changeNameNote = (e) => {
-    dispatch(changeName(e.target.value));
+  const name = useSelector((state: RootState) => state.note.name);
+  const categories = useSelector((state: RootState) => state.note.categories);
+  const content = useSelector((state: RootState) => state.note.content);
+  const category = useSelector((state: RootState) => state.note.category);
+  const changeNameNote = (e: React.FormEvent<HTMLInputElement>) => {
+    dispatch(changeName(e.currentTarget.value));
   };
 
-  const changeContentNote = (e) => {
+  const changeContentNote = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     dispatch(changeContect(e.target.value));
   };
-  const changeCategoryNote = (e) => {
+  const changeCategoryNote = (e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(changeCategory(e.target.value));
   };
 

@@ -1,124 +1,126 @@
 * {
-    font-family: "Roboto", sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  header,
-  .tableNotes{
-    padding: 1em 4em;
-  }
-  .header {
-    text-align: center;
-  }
-  #notes {
-    margin: 1em 0;
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  #notes * {
-    font-size: 1em;
-    margin-left: 2em;
-    padding: 0.5em;
-    background-color: var(--background-table-color);
-    border-radius: 0.5em;
-  }
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+header,
+.tableNotes {
+  padding: 1em 4em;
+}
+.header {
+  text-align: center;
+}
+#notes {
+  margin: 1em 0;
+  display: flex;
+  justify-content: flex-end;
+}
 
-  #notes button {
-    border: 1px solid;
-    cursor: pointer;
-  }
-  table {
-    border-spacing: 0 0.5em;
-    width: 100%;
-    table-layout: fixed;
-  }
-  tr th {
-    color: var(--text-color);
-    background-color: var(--title-table-color);
-  }
-  tr th {
-    fill: white;
-    text-align: left;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    height: 2em;
-  }
- 
-  tr td {
-    text-align: left;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    height: 2em;
-  }
-  tr td {
-    background-color: var(--background-table-color);
-  }
-  tr td:first-child,
-  tr th:first-child {
-    border-top-left-radius: 0.5em;
-    border-bottom-left-radius: 0.5em;
-  }
-   tr td:first-child{
-    margin-left: 50px;
-  } 
-  tr td:last-child,
-  tr th:last-child {
-    border-top-right-radius: 0.5em;
-    border-bottom-right-radius: 0.5em;
-  }
-   span{
-    margin-left: 25px;
-  } 
-  .rowLogoArchive, .rowLogoDelete{
-    cursor: pointer;
-  }
-  .noteLogo,
-  .rowIconEdit, .rowIconArchive, .rowIconDelete {
-    fill: #424242;
-    cursor: pointer;
-  }
-  .rowLogo {
-    fill: var(--text-color);
-  }
-  td,
-  th {
-    padding: 0.4em;
-    text-align: left;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    height: 2em;
-  }
-  .submit-button,
-  .cancel {
-    cursor: pointer;
-  }
+#notes * {
+  font-size: 1em;
+  margin-left: 2em;
+  padding: 0.5em;
+  background-color: var(--background-table-color);
+  border-radius: 0.5em;
+}
+
+#notes button {
+  border: 1px solid;
+  cursor: pointer;
+}
+table {
+  border-spacing: 0 0.5em;
+  width: 100%;
+  table-layout: fixed;
+}
+tr th {
+  color: var(--text-color);
+  background-color: var(--title-table-color);
+}
+tr th {
+  fill: white;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  height: 2em;
+}
+
+tr td {
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  height: 2em;
+}
+tr td {
+  background-color: var(--background-table-color);
+}
+tr td:first-child,
+tr th:first-child {
+  border-top-left-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
+}
+tr td:first-child {
+  margin-left: 50px;
+}
+tr td:last-child,
+tr th:last-child {
+  border-top-right-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+}
+span {
+  margin-left: 25px;
+}
+.rowLogoArchive,
+.rowLogoDelete {
+  cursor: pointer;
+}
+.noteLogo,
+.rowIconEdit,
+.rowIconArchive,
+.rowIconDelete {
+  fill: #424242;
+  cursor: pointer;
+}
+.rowLogo {
+  fill: var(--text-color);
+}
+td,
+th {
+  padding: 0.4em;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  height: 2em;
+}
+.submit-button,
+.cancel {
+  cursor: pointer;
+}
+.created,
+.category1 {
+  width: 8em;
+}
+.activeLogo {
+  width: 4em;
+}
+svg {
+  max-height: 2em;
+  max-width: 5em;
+}
+
+:root {
+  --text-color: #ffffff;
+  --title-table-color: #7e7d7d;
+  --background-table-color: #dcdce7;
+  --img-color: #000000;
+}
+@media screen and (max-width: 800px) {
   .created,
-  .category1 {
-    width: 8em;
+  .dates {
+    width: 0;
   }
-  .activeLogo {
-    width: 4em;
-  } 
-  svg {
-    max-height: 2em;
-    max-width: 5em;
-  }
-  
-  :root {
-    --text-color: #ffffff;
-    --title-table-color: #7e7d7d;
-    --background-table-color: #dcdce7;
-    --img-color: #000000;
-  }
-  @media screen and (max-width: 800px) {
-    .created,
-    .dates {
-      width: 0;
-    }
-  }
-  
+}

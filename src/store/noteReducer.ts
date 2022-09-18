@@ -1,16 +1,19 @@
+
 import { createSlice } from "@reduxjs/toolkit";
 import { categories, dataChangeNote, dataCreate } from "../helper/helper";
-import { notes } from "./notes";
+import { notes } from "../helper/notes";
+
 
 const initialState = {
   notes: notes,
   switch: true,
   categories: categories,
-  note: null,
-  name: null,
-  content: null,
-  category: null,
-  id: null,
+  note: notes,
+  name: "",
+  content: "",
+  category: "",
+  dates: "",
+  id: "",
   dataCreate: dataCreate,
   dataChangeNote: dataChangeNote,
 };
@@ -21,7 +24,7 @@ export const Note = createSlice({
   reducers: {
     addNote(state, action) {
       state.notes.push({
-        id: new Date().getTime(),
+        id: new Date().getTime().toString(),
         name: action.payload.name,
         created: state.dataCreate,
         category: action.payload.category,
@@ -42,13 +45,12 @@ export const Note = createSlice({
       state.id = action.payload;
     },
     archiveChange(state, action) {
-      state.switch === false
-        ? (state.notes.find(
-            (note) => note.id === action.payload
-          ).archived = false)
-        : (state.notes.find(
-            (note) => note.id === action.payload
-          ).archived = true);
+      let archivedNote = state.notes.find((note) => note.id === action.payload);
+      if (archivedNote !== undefined) {
+        state.switch === false
+          ? (archivedNote.archived = false)
+          : (archivedNote.archived = true);
+      }
     },
     changeName(state, action) {
       state.name = action.payload;
@@ -58,15 +60,17 @@ export const Note = createSlice({
     },
     updateNoteState(state) {
       let note = state.notes.find((note) => note.id === state.id);
-      if (note.name !== state.name) {
-        note.name = state.name;
-      }
-      if (note.content !== state.content) {
-        note.content = `${state.content}, ${state.dataChangeNote}`;
-        note.dates = `${note.dates} ${state.dataChangeNote}`;
-      }
-      if (note.category !== state.category) {
-        note.category = state.category;
+      if (note !== undefined) {
+        if (note.name !== state.name) {
+          note.name = state.name;
+        }
+        if (note.content !== state.content) {
+          note.content = `${state.content}, ${state.dataChangeNote}`;
+          note.dates = `${note.dates} ${state.dataChangeNote}`;
+        }
+        if (note.category !== state.category) {
+          note.category = state.category;
+        }
       }
     },
     changeCategory(state, action) {
