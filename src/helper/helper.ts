@@ -45,13 +45,4 @@ export interface newNote {
   category: string;
   content: string;
 }
-type noteArr = {
-  id: string;
-  name: string;
-  created: string;
-  category: string;
-  content: string;
-  dates: string;
-  archived: boolean;
-};
-export let noteArr: noteArr[];
+

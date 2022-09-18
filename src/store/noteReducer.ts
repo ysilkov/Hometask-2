@@ -1,15 +1,14 @@
-import { noteArr } from "./../helper/helper";
+
 import { createSlice } from "@reduxjs/toolkit";
 import { categories, dataChangeNote, dataCreate } from "../helper/helper";
 import { notes } from "../helper/notes";
-
 
 
 const initialState = {
   notes: notes,
   switch: true,
   categories: categories,
-  note: noteArr,
+  note: notes,
   name: "",
   content: "",
   category: "",
