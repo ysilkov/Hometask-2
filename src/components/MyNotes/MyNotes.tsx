@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { categories } from "../../helper/helper";
+import { categories, categoriesType } from "../../helper/helper";
 import {
   archiveLogo,
   deleteLogo,
@@ -15,6 +15,7 @@ import {
   removeNote,
   switcher,
 } from "../../store/noteReducer";
+import { RootState } from "../../store/store";
 import ArchiveNotes from "../ArchiveNotes/ArchiveNotes";
 import ModaleWindowCreate from "../ModalWindow/ModalWindowCreate/ModalWindowCreate";
 import ModalWindowUpdate from "../ModalWindow/ModalWindowUpdate/ModalWindowUpdate";
@@ -25,8 +26,10 @@ const MyNotes = () => {
   const [modalActiveEdit, setModalActiveEdit] = useState(false);
   const [modalActiveCreate, setModalActiveCreate] = useState(false);
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.note.notes);
-  let activeNoteTableShown = useSelector((state) => state.note.switch);
+  const data = useSelector((state: RootState) => state.note.notes);
+  let activeNoteTableShown = useSelector(
+    (state: RootState) => state.note.switch
+  );
   let activeNote = data.filter((el) => el.archived === false);
   let archivedNote = data.filter((el) => el.archived === true);
   const notes = activeNoteTableShown ? activeNote : archivedNote;
@@ -41,7 +44,7 @@ const MyNotes = () => {
     );
   };
 
-  const addNoteArchive = (id) => {
+  const addNoteArchive = (id: string) => {
     dispatch(archiveChange(id));
     dispatch(switcher(activeNoteTableShown));
     setMessage(
@@ -50,7 +53,7 @@ const MyNotes = () => {
         : "Note add to archive"
     );
   };
-  const deleteNote = (id) => {
+  const deleteNote = (id: string) => {
     dispatch(removeNote(data.filter((el) => el.id !== id)));
     setMessage("Note delete");
   };
@@ -64,9 +67,9 @@ const MyNotes = () => {
         : "All active notes delete"
     );
   };
-  const getIdModal = (id) =>{
-    dispatch(editModal(id))
-  }
+  const getIdModal = (id: string) => {
+    dispatch(editModal(id));
+  };
   return (
     <div className={style.tableNotes}>
       <header>
@@ -79,7 +82,7 @@ const MyNotes = () => {
           <col className={style.created} />
           <col className={style.category1} />
           <col className={style.content} />
-          <col className={style.dates}/>
+          <col className={style.dates} />
           <col className={style.activeLogo} />
           <col className={style.activeLogo} />
           <col className={style.activeLogo} />
@@ -92,7 +95,7 @@ const MyNotes = () => {
             <th>Category</th>
             <th>Content</th>
             <th>Dates</th>
-            
+
             <th className={style.rowLogo}>&nbsp;</th>
             <th
               className={style.rowLogoArchive}
@@ -118,7 +121,9 @@ const MyNotes = () => {
             <tr key={el.id} id={el.id}>
               <td className={style.categoryIcon}>
                 <span
-                  dangerouslySetInnerHTML={{ __html: categories[el.category] }}
+                  dangerouslySetInnerHTML={{
+                    __html: categories[el.category as keyof categoriesType],
+                  }}
                 />
               </td>
               <td className={style.name}>{el.name}</td>
@@ -126,7 +131,7 @@ const MyNotes = () => {
               <td className={style.category1}>{el.category}</td>
               <td className={style.content}>{el.content}</td>
               <td className={style.dates}>{el.dates}</td>
-              
+
               <td
                 className={style.rowIconEdit}
                 dangerouslySetInnerHTML={{ __html: editLogo }}
@@ -166,7 +171,9 @@ const MyNotes = () => {
       />
       <div id={style.notes}>
         <div id="message">{message}</div>
-        <button id="create-button" onClick={()=>setModalActiveCreate(true)}>Create Note</button>
+        <button id="create-button" onClick={() => setModalActiveCreate(true)}>
+          Create Note
+        </button>
       </div>
       <ArchiveNotes />
     </div>

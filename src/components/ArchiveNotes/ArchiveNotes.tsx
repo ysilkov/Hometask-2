@@ -1,17 +1,19 @@
-import React from "react";
+import React, { FC } from "react";
 import { useSelector } from "react-redux";
+import { categoriesType } from "../../helper/helper";
+import { RootState } from "../../store/store";
 import style from "./ArchiveNotes.module.css";
 
-const ArchiveNotes = () => {
-  const data = useSelector((state) => state.note.notes);
-  let Ideas,
-    Quotes,
-    Tasks,
-    Thoughts,
-    IdeasActive,
-    QuotesActive,
-    TasksActive,
-    ThoughtsActive;
+const ArchiveNotes: FC = () => {
+  const data = useSelector((state: RootState) => state.note.notes);
+  let Ideas: number,
+    Quotes: number,
+    Tasks: number,
+    Thoughts: number,
+    IdeasActive: number,
+    QuotesActive: number,
+    TasksActive: number,
+    ThoughtsActive: number;
   Ideas =
     Quotes =
     Tasks =
@@ -46,7 +48,7 @@ const ArchiveNotes = () => {
     { category: "Task", active: TasksActive, total: Tasks },
     { category: "Random Thought", active: ThoughtsActive, total: Thoughts },
   ];
-  const categories = useSelector((state) => state.note.categories);
+  const categories = useSelector((state: RootState) => state.note.categories);
   return (
     <table>
       <colgroup>
@@ -70,7 +72,9 @@ const ArchiveNotes = () => {
             <td className={`${style.categoryIcon} ${style.statsIcon}`}>
               <div
                 className={style.backColor}
-                dangerouslySetInnerHTML={{ __html: categories[note.category] }}
+                dangerouslySetInnerHTML={{
+                  __html: categories[note.category as keyof categoriesType],
+                }}
               ></div>
             </td>
             <td className={style.category2}>{note.category}</td>
