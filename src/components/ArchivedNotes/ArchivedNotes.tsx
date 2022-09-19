@@ -2,9 +2,9 @@ import React, { FC } from "react";
 import { useSelector } from "react-redux";
 import { categoriesType } from "../../helper/helper";
 import { RootState } from "../../store/store";
-import style from "./ArchiveNotes.module.css";
+import style from "./ArchivedNotes.module.css";
 
-const ArchiveNotes: FC = () => {
+const ArchivedNotes: FC = () => {
   const data = useSelector((state: RootState) => state.note.notes);
   let Ideas: number,
     Quotes: number,
@@ -42,7 +42,7 @@ const ArchiveNotes: FC = () => {
       if (!note.archived) ThoughtsActive++;
     }
   });
-  const archieveData = [
+  const archivedData = [
     { category: "Idea", active: IdeasActive, total: Ideas },
     { category: "Quote", active: QuotesActive, total: Quotes },
     { category: "Task", active: TasksActive, total: Tasks },
@@ -66,7 +66,7 @@ const ArchiveNotes: FC = () => {
         </tr>
       </thead>
       <tbody id="archieve-table"></tbody>
-      {archieveData.map((note) => (
+      {archivedData.map((note) => (
         <thead key={note.category}>
           <tr>
             <td className={`${style.categoryIcon} ${style.statsIcon}`}>
@@ -86,4 +86,4 @@ const ArchiveNotes: FC = () => {
     </table>
   );
 };
-export default ArchiveNotes;
+export default ArchivedNotes;

@@ -9,14 +9,14 @@ import {
   unArchiveLogo,
 } from "../../helper/logo";
 import {
-  archiveChange,
+  archivedChange,
   deleteNotes,
   editModal,
   removeNote,
   switcher,
 } from "../../store/noteReducer";
 import { RootState } from "../../store/store";
-import ArchiveNotes from "../ArchiveNotes/ArchiveNotes";
+import ArchivedNotes from "../ArchivedNotes/ArchivedNotes";
 import ModaleWindowCreate from "../ModalWindow/ModalWindowCreate/ModalWindowCreate";
 import ModalWindowUpdate from "../ModalWindow/ModalWindowUpdate/ModalWindowUpdate";
 import style from "./MyNotes.module.css";
@@ -45,7 +45,7 @@ const MyNotes = () => {
   };
 
   const addNoteArchive = (id: string) => {
-    dispatch(archiveChange(id));
+    dispatch(archivedChange(id));
     dispatch(switcher(activeNoteTableShown));
     setMessage(
       activeNoteTableShown === false
@@ -175,7 +175,7 @@ const MyNotes = () => {
           Create Note
         </button>
       </div>
-      <ArchiveNotes />
+      <ArchivedNotes />
     </div>
   );
 };

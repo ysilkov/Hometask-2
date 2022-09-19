@@ -44,7 +44,7 @@ export const Note = createSlice({
       state.dates = state.dataChangeNote;
       state.id = action.payload;
     },
-    archiveChange(state, action) {
+    archivedChange(state, action) {
       let archivedNote = state.notes.find((note) => note.id === action.payload);
       if (archivedNote !== undefined) {
         state.switch === false
@@ -88,7 +88,7 @@ export const {
   addNote,
   removeNote,
   deleteNotes,
-  archiveChange,
+  archivedChange,
   switcher,
   editModal,
   changeName,
