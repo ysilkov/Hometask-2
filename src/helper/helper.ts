@@ -1,4 +1,4 @@
-import { ideaLogo, quoteLogo, taskLogo, thoughtLogo } from "./logo.js";
+import { ideaLogo, quoteLogo, taskLogo, thoughtLogo } from "./logo";
 
 export interface categoriesType {
   Idea: string;
